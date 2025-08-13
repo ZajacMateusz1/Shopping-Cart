@@ -9,3 +9,7 @@
   max-width: 100%;
   object-fit: contain;
 }
+.p {
+  padding: 0 0.5rem;
+  font-size: 0.9rem;
+}

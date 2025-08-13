@@ -1,6 +1,8 @@
 import Tshirt from "./assets/tshirt-basic.jpg";
 import Hoodie from "./assets/hoodie.jpg";
 import Jeans from "./assets/jeans.jpg";
+import Jacket from "./assets/jacket.jpg";
+import SummerDress from "./assets/summer-dress.jpg";
 
 const PRODUCTS = [
   {
@@ -29,14 +31,14 @@ const PRODUCTS = [
     id: 4,
     name: "Jacket",
     price: 299.99,
-    img: "/images/jacket.jpg",
+    img: Jacket,
     description: "Lightweight yet warm quilted jacket for cooler days.",
   },
   {
     id: 5,
     name: "Summer Dress",
     price: 179.99,
-    img: "/images/summer-dress.jpg",
+    img: SummerDress,
     description: "A light and comfortable summer dress",
   },
 ];
