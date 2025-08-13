@@ -9,11 +9,11 @@ export default function CardModal() {
       {items.length > 0 ? (
         <ul>
           {items.map((item) => (
-            <li>{item}</li>
+            <li>{item.name}</li>
           ))}
         </ul>
       ) : (
-        <p>Your cart is empty</p>
+        <p>Your cart is empty </p>
       )}
       <Button>Checkout</Button>
     </div>

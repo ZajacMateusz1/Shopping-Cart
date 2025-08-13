@@ -6,9 +6,9 @@ import CardModal from "./components/CardModal/CardModal.jsx";
 function App() {
   return (
     <div className={styles.app}>
-      {/* <CardModal /> */}
-      <Header>Shopping cart App</Header>
       <CartContextProvider>
+        <CardModal />
+        <Header>Shopping cart App</Header>
         <Page />
       </CartContextProvider>
     </div>
