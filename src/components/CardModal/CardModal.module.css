@@ -1,0 +1,31 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  gap: 1rem;
+  height: 50vh;
+  width: 70vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5%;
+  padding: 2rem;
+}
+.h2 {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.ul {
+  list-style: none;
+}
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

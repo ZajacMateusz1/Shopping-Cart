@@ -10,7 +10,15 @@ function cartReducer(state, action) {
     case "ADD_ITEM": {
       const product = PRODUCTS.find((product) => product.id === action.payload);
       return {
-        items: [...state.items, product],
+        items: [
+          ...state.items,
+          {
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            quantity: 1,
+          },
+        ],
         counter: state.counter + 1,
       };
     }
@@ -45,6 +53,16 @@ export default function CartContextProvider({ children }) {
   function handleClearCart() {
     cartDispatch({
       type: "CLEAR",
+    });
+  }
+  function increment() {
+    cartDispatch({
+      type: "INCREMENT",
+    });
+  }
+  function decrement() {
+    cartDispatch({
+      type: "DECREMENT",
     });
   }
   const cartCTX = {
