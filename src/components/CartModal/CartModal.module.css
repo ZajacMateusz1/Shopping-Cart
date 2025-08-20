@@ -21,6 +21,9 @@
 .ul {
   list-style: none;
 }
+.li {
+  margin: 0.3rem 0;
+}
 .background {
   position: fixed;
   top: 0;
@@ -43,4 +46,9 @@
 .buttons {
   display: flex;
   gap: 0.5rem;
+}
+.price {
+  font-size: 0.9rem;
+  text-align: left;
+  padding-left: 0.2rem;
 }

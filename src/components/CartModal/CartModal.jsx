@@ -17,35 +17,40 @@ export default function CartModal({ handleModalStatus }) {
         <div>
           <h2 className={styles.h2}>Your Cart</h2>
           {items.length > 0 ? (
-            <ul className={styles.ul}>
-              {items.map((item) => (
-                <li key={item.id}>
-                  <div className={styles.itemInfo}>
-                    <span>{item.name}</span>
-                    <span>
-                      <button
-                        className={styles.controlQuantityButton}
-                        onClick={() => {
-                          item.quantity > 1
-                            ? decrement(item.id)
-                            : removeItem(item.id);
-                        }}
-                      >
-                        -
-                      </button>
-                      {item.quantity}
-                      <button
-                        className={styles.controlQuantityButton}
-                        onClick={() => increment(item.id)}
-                      >
-                        +
-                      </button>
-                    </span>
-                  </div>
-                  <p>Price: ${item.price}</p>
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className={styles.ul}>
+                {items.map((item) => (
+                  <li className={styles.li} key={item.id}>
+                    <div className={styles.itemInfo}>
+                      <span>{item.name}</span>
+                      <span>
+                        <button
+                          className={styles.controlQuantityButton}
+                          onClick={() => {
+                            item.quantity > 1
+                              ? decrement(item.id)
+                              : removeItem(item.id);
+                          }}
+                        >
+                          -
+                        </button>
+                        {item.quantity}
+                        <button
+                          className={styles.controlQuantityButton}
+                          onClick={() => increment(item.id)}
+                        >
+                          +
+                        </button>
+                      </span>
+                    </div>
+                    <p className={styles.price}>
+                      Price: ${(item.price * item.quantity).toFixed(2)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p>Total price: ${totalPrice.toFixed(2)}</p>
+            </>
           ) : (
             <p>Your cart is empty </p>
           )}
