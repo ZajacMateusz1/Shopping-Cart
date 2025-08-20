@@ -9,18 +9,28 @@ function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM": {
       const product = PRODUCTS.find((product) => product.id === action.payload);
-      return {
-        items: [
-          ...state.items,
-          {
-            name: product.name,
-            price: product.price,
-            description: product.description,
-            quantity: 1,
-          },
-        ],
-        counter: state.counter + 1,
-      };
+      if (!product) return state;
+      const exists = state.items.find(
+        (product) => product.id === action.payload
+      );
+      const items = exists
+        ? state.items.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        : [
+            ...state.items,
+            {
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              description: product.description,
+              quantity: 1,
+            },
+          ];
+      const counter = items.reduce((acc, item) => acc + item.quantity, 0);
+      return { items, counter };
     }
     case "REMOVE_ITEM": {
       return {
