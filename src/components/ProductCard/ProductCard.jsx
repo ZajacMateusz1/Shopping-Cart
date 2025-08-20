@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../../store/cart-context.jsx";
+import CartContext from "../../store/cart-context.jsx";
 import Button from "../Button/Button.jsx";
 import styles from "./ProductCard.module.css";
 export default function ProductCard({ id, name, price, img, description }) {

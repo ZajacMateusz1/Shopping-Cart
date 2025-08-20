@@ -1,5 +1,5 @@
 import { use } from "react";
-import { CartContext } from "../../store/cart-context";
+import CartContext from "../../store/cart-context.jsx";
 import styles from "./Header.module.css";
 export default function Header({ children, handleModalStatus }) {
   const { counter } = use(CartContext);
