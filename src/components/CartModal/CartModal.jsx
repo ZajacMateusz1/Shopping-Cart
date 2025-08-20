@@ -3,7 +3,7 @@ import { CartContext } from "../../store/cart-context.jsx";
 import Button from "../Button/Button.jsx";
 import styles from "./CartModal.module.css";
 export default function CardModal({ handleModalStatus }) {
-  const { items } = useContext(CartContext);
+  const { items, increment, decrement, removeItem } = useContext(CartContext);
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -21,9 +21,17 @@ export default function CardModal({ handleModalStatus }) {
                   <span>{item.name}</span>
                   <span>${item.price}</span>
                   <span>
-                    <button>-</button>
+                    <button
+                      onClick={() => {
+                        item.quantity > 1
+                          ? decrement(item.id)
+                          : removeItem(item.id);
+                      }}
+                    >
+                      -
+                    </button>
                     {item.quantity}
-                    <button>+</button>
+                    <button onClick={() => increment(item.id)}>+</button>
                   </span>
                 </li>
               ))}
