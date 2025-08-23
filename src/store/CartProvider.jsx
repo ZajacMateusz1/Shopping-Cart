@@ -8,6 +8,8 @@ function sumQuantities(items) {
 function findItem(items, itemId) {
   return items.find((product) => product.id === itemId);
 }
+const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+const itemsCounter = sumQuantities(cartItems);
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM": {
@@ -31,6 +33,7 @@ function cartReducer(state, action) {
             },
           ];
       const counter = sumQuantities(items);
+      localStorage.setItem("cartItems", JSON.stringify(items));
       return { items, counter };
     }
     case "REMOVE_ITEM": {
@@ -42,6 +45,7 @@ function cartReducer(state, action) {
       };
     }
     case "CLEAR": {
+      localStorage.setItem("cartItems", JSON.stringify([]));
       return { items: [], counter: 0 };
     }
     case "INCREMENT": {
@@ -50,6 +54,7 @@ function cartReducer(state, action) {
         item.id === exists.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       const counter = sumQuantities(items);
+      localStorage.setItem("cartItems", JSON.stringify(items));
       return { items, counter };
     }
     case "DECREMENT": {
@@ -58,6 +63,7 @@ function cartReducer(state, action) {
         item.id === exists.id ? { ...item, quantity: item.quantity - 1 } : item
       );
       const counter = sumQuantities(items);
+      localStorage.setItem("cartItems", JSON.stringify(items));
       return { items, counter };
     }
     default:
@@ -66,8 +72,8 @@ function cartReducer(state, action) {
 }
 export default function CartContextProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, {
-    items: [],
-    counter: 0,
+    items: cartItems,
+    counter: itemsCounter,
   });
   function handleAddItem(id) {
     cartDispatch({
