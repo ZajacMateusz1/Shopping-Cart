@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
-#root {
+#root,
+#modal-root {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }

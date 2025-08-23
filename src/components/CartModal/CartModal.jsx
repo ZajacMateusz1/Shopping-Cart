@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { createPortal } from "react-dom";
 import CartContext from "../../store/cart-context.jsx";
 import Button from "../Button/Button.jsx";
 import CloseButton from "../CloseButton/CloseButton.jsx";
@@ -10,7 +11,7 @@ export default function CartModal({ handleModalStatus }) {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  return (
+  return createPortal(
     <>
       <div onClick={handleModalStatus} className={styles.background}></div>
       <div role="dialog" className={styles.modal}>
@@ -60,6 +61,7 @@ export default function CartModal({ handleModalStatus }) {
           <Button>Checkout</Button>
         </div>
       </div>
-    </>
+    </>,
+    document.getElementById("modal-root")
   );
 }
