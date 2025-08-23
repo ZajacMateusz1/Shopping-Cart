@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
 import CartContext from "../../store/cart-context.jsx";
 import Button from "../Button/Button.jsx";
@@ -11,6 +11,17 @@ export default function CartModal({ handleModalStatus }) {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  useEffect(() => {
+    function handleEscClick(e) {
+      if (e.key === "Escape") {
+        handleModalStatus();
+      }
+    }
+    document.addEventListener("keydown", handleEscClick);
+    return () => {
+      document.removeEventListener("keydown", handleEscClick);
+    };
+  }, [handleModalStatus]);
   return createPortal(
     <>
       <div onClick={handleModalStatus} className={styles.background}></div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import CartContextProvider from "./store/CartProvider.jsx";
 import Header from "./components/Header/Header.jsx";
 import Page from "./components/Page.jsx";
@@ -6,9 +6,12 @@ import styles from "./App.module.css";
 import CardModal from "./components/CartModal/CartModal.jsx";
 function App() {
   const [modalStatus, setModalStatus] = useState(false);
-  function handleModalStatus() {
-    setModalStatus((prev) => !prev);
-  }
+  const handleModalStatus = useCallback(
+    function handleModalStatus() {
+      setModalStatus((prev) => !prev);
+    },
+    [setModalStatus]
+  );
   return (
     <div className={styles.app}>
       <CartContextProvider>
